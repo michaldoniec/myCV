@@ -1,5 +1,7 @@
 package com.michal.myCV.dao;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.sql.*;
 
 
@@ -22,10 +24,6 @@ public class JDBCPostgres {
 		}
 	}
 
-	Connection getConnection() {
-		return this.connection;
-	}
-
 	public void closeDatabase() {
 		try {
 			clearStatementAndResultSet();
@@ -37,25 +35,24 @@ public class JDBCPostgres {
 
 	void executeUpdateQuery(String query) {
 		try {
-			clearStatementAndResultSet();
 			this.statement.executeUpdate(query);
 			this.statement.close();
 			this.connection.commit();
 		} catch ( SQLException e) {
+			System.out.println(e);
 			System.err.println( e.getMessage() );
 		}
 	}
 
 	ResultSet executeSelectQuery(String query) {
 		try {
-			clearStatementAndResultSet();
 			this.resultSet = this.statement.executeQuery(query);
 		} catch ( SQLException e) {
 			System.err.println( e.getMessage() );
 		}
 		return this.resultSet;
 	}
-	
+
 
 	private void clearStatementAndResultSet() throws SQLException {
 		if (this.statement != null) {
