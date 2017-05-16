@@ -1,10 +1,10 @@
 package com.michal.myCV.model;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Education extends PersonBio {
-	Education((String name, String description, Date dateFrom, Date dateTo, Integer idUser){
+	public Education(String name, String description, LocalDate dateFrom, LocalDate dateTo, Integer idUser){
 		super(name, description,dateFrom,dateTo,idUser);
 	}
 
