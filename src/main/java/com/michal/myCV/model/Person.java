@@ -10,8 +10,11 @@ public class Person extends BaseModel {
 	private String email;
 	private String sex;
 	private Integer age;
+	private Experience professionalExperience;
+	private  Education education;
 
-	Person(String name, String surname, String address, String phone, String email, String sex, Integer age){
+	public Person(String name, String surname, String address, String phone, String email, String sex, Integer age,
+	       Experience professionalExperience, Education education){
 		super(name);
 		this.surname = surname;
 		this.address = address;
@@ -19,6 +22,8 @@ public class Person extends BaseModel {
 		this.email = email;
 		this.sex = sex;
 		this.age = age;
+		this.professionalExperience = professionalExperience;
+		this.education = education;
 	}
 
 	public void setSurname(String surname) {
@@ -39,6 +44,14 @@ public class Person extends BaseModel {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public void setProfessionalExperience(Experience professionalExperience) {
+		this.professionalExperience = professionalExperience;
+	}
+
+	public void setEducation(Education education) {
+		this.education = education;
 	}
 
 	public String getSurname() {
@@ -65,4 +78,11 @@ public class Person extends BaseModel {
 		return sex;
 	}
 
+	public Experience getProfessionalExperience() {
+		return professionalExperience;
+	}
+
+	public Education getEducation() {
+		return education;
+	}
 }
