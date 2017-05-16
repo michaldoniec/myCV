@@ -1,10 +1,7 @@
 package com.michal.myCV.dao;
 
+import com.michal.myCV.model.Person;
 
-/**
- * Created by michal on 16.05.17.
- */
 public interface PersonDao {
 	Person find(int id);
-
 }
