@@ -1,15 +1,15 @@
 package com.michal.myCV.model;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PersonBio extends BaseModel {
 	private String description;
-	private Date dateFrom;
-	private Date dateTo;
+	private LocalDate  dateFrom;
+	private LocalDate dateTo;
 	private Integer idUser;
 
-	public PersonBio(String name, String description, Date dateFrom, Date dateTo, Integer idUser){
+	public PersonBio(String name, String description, LocalDate dateFrom, LocalDate dateTo, Integer idUser){
 		super(name);
 		this.description = description;
 		this.dateFrom = dateFrom;
@@ -21,11 +21,11 @@ public class PersonBio extends BaseModel {
 		this.description = description;
 	}
 
-	public void setDateFrom(Date dateFrom) {
+	public void setDateFrom(LocalDate dateFrom) {
 		this.dateFrom = dateFrom;
 	}
 
-	public void setDateTo(Date dateTo) {
+	public void setDateTo(LocalDate dateTo) {
 		this.dateTo = dateTo;
 	}
 
@@ -33,11 +33,11 @@ public class PersonBio extends BaseModel {
 		return description;
 	}
 
-	public Date getDateFrom() {
+	public LocalDate getDateFrom() {
 		return dateFrom;
 	}
 
-	public Date getDateTo() {
+	public LocalDate getDateTo() {
 		return dateTo;
 	}
 
