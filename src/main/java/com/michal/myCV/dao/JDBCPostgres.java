@@ -39,7 +39,6 @@ public class JDBCPostgres {
 			this.statement.close();
 			this.connection.commit();
 		} catch ( SQLException e) {
-			System.out.println(e);
 			System.err.println( e.getMessage() );
 		}
 	}
