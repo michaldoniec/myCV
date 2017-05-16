@@ -1,14 +1,13 @@
 package com.michal.myCV.dao;
 
+import com.michal.myCV.model.Education;
+
 import java.util.List;
 
-/**
- * Created by michal on 16.05.17.
- */
+
 public interface EducationDao {
 	void add(Education education);
-	Education find(int id);
+	List<Education> getAllForPerson(int id);
 	void remove(int id);
-
-	List<Education> getAll();
+	Integer getNewId();
 }
