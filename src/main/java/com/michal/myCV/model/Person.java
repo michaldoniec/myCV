@@ -1,5 +1,7 @@
 package com.michal.myCV.model;
 
+import java.util.List;
+
 /**
  * Created by michal on 16.05.17.
  */
@@ -10,11 +12,11 @@ public class Person extends BaseModel {
 	private String email;
 	private String sex;
 	private Integer age;
-	private Experience professionalExperience;
-	private  Education education;
+	private List<Experience> professionalExperience;
+	private List<Education> education;
 
 	public Person(String name, String surname, String address, String phone, String email, String sex, Integer age,
-	       Experience professionalExperience, Education education){
+	       List<Experience> professionalExperience, List<Education> education){
 		super(name);
 		this.surname = surname;
 		this.address = address;
@@ -46,11 +48,11 @@ public class Person extends BaseModel {
 		this.email = email;
 	}
 
-	public void setProfessionalExperience(Experience professionalExperience) {
+	public void setProfessionalExperience(List<Experience> professionalExperience) {
 		this.professionalExperience = professionalExperience;
 	}
 
-	public void setEducation(Education education) {
+	public void setEducation(List<Education> education) {
 		this.education = education;
 	}
 
@@ -78,11 +80,12 @@ public class Person extends BaseModel {
 		return sex;
 	}
 
-	public Experience getProfessionalExperience() {
+	public List<Experience> getProfessionalExperience() {
 		return professionalExperience;
 	}
 
-	public Education getEducation() {
+	public List<Education> getEducation() {
 		return education;
 	}
+
 }
