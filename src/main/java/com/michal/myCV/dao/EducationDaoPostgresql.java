@@ -2,63 +2,107 @@ package com.michal.myCV.dao;
 
 import com.michal.myCV.model.Education;
 
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.text.SimpleDateFormat;
 
 public class EducationDaoPostgresql implements EducationDao {
-	private JDBCPostgres database = new JDBCPostgres();
+	private JDBCPostgres database;
+	private Connection databaseConnection;
+	private PreparedStatement statement;
+
+	public EducationDaoPostgresql(JDBCPostgres database){
+		this.database = database;
+		this.databaseConnection = this.database.getConnection();
+	}
 
 	public void add(Education education) {
 		try{
-			SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
-			Integer id = education.getId();
-			String name = education.getName();
-			String description = education.getDescription();
-			LocalDate dateFrom = education.getDateFrom();
-			LocalDate dateTo = education.getDateTo();
-			Integer userId = education.getIdUser();
-			String addStatement = String.format("INSERT INTO education (id, name, description, date_from, date_to, id_user) VALUES(%d,'%s','%s','%s','%s',%d)", id, name, description, dateFrom, dateTo, userId);
-			System.out.println(addStatement);
-			database.executeUpdateQuery(addStatement);
-		} catch(NullPointerException e){
+			String addStatement = String.format("INSERT INTO education(id, name, description, date_from, date_to, id_user) " +
+			 "VALUES(%d,'%s','%s','%s','%s',%d)", education.getId(), education.getName(), education.getDescription(),
+			 education.getDateFrom(), education.getDateTo(),education.getIdUser());
+			statement = databaseConnection.prepareStatement(addStatement);
+			database.executeUpdateQuery(statement);
+		} catch(NullPointerException | SQLException e){
 			System.err.println(e.getMessage());
 		}
 	}
 
-	public List<Education> getAllForPerson(int id){
+	public void update(Education education) {
+		try {
+			String updateStatement = String.format("UPDATE education " +
+			  " SET name = '%s', description = '%s', date_from = '%s', date_to = '%s', id_user = %d WHERE id = %d",
+			 education.getName(), education.getDescription(), education.getDateFrom(), education.getDateTo(),
+			 education.getIdUser(), education.getId());
+			statement = databaseConnection.prepareStatement(updateStatement);
+			database.executeUpdateQuery(statement);
+		} catch (SQLException | NullPointerException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+
+	public Education find(Integer educationId){
+		Education education = null;
+		try{
+			String queryStatement = String.format("SELECT * FROM education WHERE id = %d", educationId);
+			statement = databaseConnection.prepareStatement(queryStatement);
+			ResultSet result = database.executeSelectQuery(statement);
+			while(result.next()){
+				education = new Education(result.getString("name"),
+				 result.getString("description"),LocalDate.parse(result.getString("date_from")),
+				 LocalDate.parse(result.getString("date_to")), result.getInt("id_user"));
+				education.setId(result.getInt("id"));
+				return education;
+			}
+		} catch(NullPointerException | SQLException e){
+			System.err.println(e.getMessage());
+		}
+		return education;
+	}
+
+	public List<Education> getAllForPerson(Integer personId){
 		List<Education> educationList = new ArrayList<>();
 		try{
-			String queryStatement = String.format("SELECT * FROM education WHERE id_user = %d", id);
-			ResultSet result = database.executeSelectQuery(queryStatement);
+			String queryStatement = String.format("SELECT * FROM education WHERE id_user = %d ORDER BY date_to DESC",
+			 personId);
+			statement = databaseConnection.prepareStatement(queryStatement);
+			ResultSet result = database.executeSelectQuery(statement);
 			while(result.next()){
-			Education edu = new Education(result.getString("name"), result.getString("description"),LocalDate.parse(result.getString("date_from")),
-			LocalDate.parse(result.getString("date_to")), result.getInt("id_user"));
-			edu.setId(result.getInt("id"));
-			educationList.add(edu);
+				Education edu = new Education(result.getString("name"),
+				 result.getString("description"),LocalDate.parse(result.getString("date_from")),
+				LocalDate.parse(result.getString("date_to")), result.getInt("id_user"));
+				edu.setId(result.getInt("id"));
+				educationList.add(edu);
 			}
-			return educationList;
-
 		} catch(NullPointerException | SQLException e){
 			System.err.println(e.getMessage());
 			System.out.println(e);
-			return educationList;
 		}
+		return educationList;
 	}
 
-	public void remove(int id){
-		String deleteStatement = String.format("DELETE FROM education WHERE id = %d", id);
-		database.executeUpdateQuery(deleteStatement);
+	public void remove(Integer educationId){
+		try{
+		String deleteStatement = String.format("DELETE FROM education WHERE id = %d", educationId);
+		statement = databaseConnection.prepareStatement(deleteStatement);
+		database.executeUpdateQuery(statement);
+		} catch (SQLException | NullPointerException e){
+			System.err.println(e.getMessage());
+		}
+
 	}
 
 	public Integer getNewId(){
 		Integer newId = 0;
 		try{
 			String selectStatement = "SELECT id FROM education ORDER BY id DESC LIMIT 1";
-			ResultSet result = database.executeSelectQuery(selectStatement);
+			statement = databaseConnection.prepareStatement(selectStatement);
+			ResultSet result = database.executeSelectQuery(statement);
 			while(result.next()) {
 				newId = result.getInt("id");
 			}
