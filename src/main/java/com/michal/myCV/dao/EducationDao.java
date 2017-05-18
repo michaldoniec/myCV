@@ -4,10 +4,16 @@ import com.michal.myCV.model.Education;
 
 import java.util.List;
 
-
 public interface EducationDao {
 	void add(Education education);
-	List<Education> getAllForPerson(int id);
-	void remove(int id);
+
+	List<Education> getAllForPerson(Integer personId);
+
+	void update(Education education);
+
+	void remove(Integer educationId);
+
+	Education find(Integer educationId);
+
 	Integer getNewId();
 }
