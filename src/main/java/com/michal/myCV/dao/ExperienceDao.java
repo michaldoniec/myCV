@@ -4,12 +4,16 @@ import com.michal.myCV.model.Experience;
 
 import java.util.List;
 
-/**
- * Created by michal on 16.05.17.
- */
 public interface ExperienceDao {
 	void add(Experience experience);
-	List<Experience> getAllForPerson(int id);
-	void remove(int id);
+
+	void update(Experience experience);
+
+	Experience find(Integer experienceId);
+
+	List<Experience> getAllForPerson(Integer personId);
+
+	void remove(Integer experienceId);
+
 	Integer getNewId();
 }
