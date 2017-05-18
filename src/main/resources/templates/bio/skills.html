@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Michal D." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>My page</title>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css" />
+    <!--<script src="js/main.js"></script>-->
+
+</head>
+<body>
+    <div class="container">
+        <div class ="col-sm-3">
+            <div class="row">
+                <div class="col-xm-4">
+                    <div class="classWithPad">
+                        <p id="fullname" th:text="${user.getName()} + ' ' + ${user.getSurname()}"></p>
+                        <div class="aligner">
+                            <img id="avatar" src="http://i.imgur.com/bTYUjJo.jpg">
+                        </div>
+                        <p></p>
+                        <div id="personal-data">
+                            <p th:text="'City: '+ ${user.getAddress()}">City: </p>
+                            <p th:text="'Age: '+ ${user.getAge()}">Age: </p>
+                            <p th:text="'Phone No. ' + ${user.getPhone()}">Phone No. </p>
+                            <p th:text="'Email: ' + ${user.getEmail()}">Email: </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xm-8">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Experience<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/experience/view">View past experience</a></li>
+                                <li><a href="/experience/add">Add new experience</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Education<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/education/view">View past education</a></li>
+                                <li><a href="/education/add">Add new school/course</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Skills, Technologies, Interests<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/skills" class="menulink">Skills, certificates and technologies</a></li>
+                                <li><a href="/interests" class="menulink">Interests</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/"><button class="btn btn-primary btn-md">Main page</button></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-9">
+            <div class="row">
+                <div class="col-xm-12">
+                    <h1>
+                        <span>Skills</span>
+                    </h1>
+                    <p> My current skills:
+                    <ul>
+                        <li>Python  level: Intermediate</li>
+                        <li>Flask level: Intermediate</li>
+                        <li>Jinja level: beginner</li>
+                        <li>JAVA level: beginner</li>
+                        <li>Spark level: beginner </li>
+                        <li>Thymeleaf level: beginner</li>
+                        <li>Javascript (plus jquery) level: beginner</li>
+                        <li>SQLite level: intermediate</li>
+                        <li>Postgresql level: beginner</li>
+                        <li>Ajax (with jquery & Python) level: beginner</li>
+                        <li>Regex level: beginner</li>
+                        <li>HTML level: intermediate</li>
+                        <li>CSS (plus bootstrap) level: beginner </li>
+                        <li>Ubuntu level: beginner</li>
+                        <li>Know design patterns:
+                            <ul>
+                                <li>MVC</li>
+                                <li>DAO</li>
+                                <li>Singleton</li>
+                                <li>Iterator</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </p>
+                    <p>
+                       Used tools:
+                        <ul>
+                            <li>Atom</li>
+                            <li>PyCharm Community Edition</li>
+                            <li>IntelliJ IDEA Ultimate</li>
+                        </ul>
+                    </p>
+                    <p>Language skills: English level B2/C1</p>
+                    <p>Useful non-programming skills & legal knowledge:
+                        <ul>
+                            <li>Data protection (including GDPR)</li>
+                            <li>Copyrights</li>
+                            <li>Contracts</li>
+                            <li>Experience with legal negotiations</li>
+                        </ul>
+                    </p>
+                    <p>
+                        Certificates/qualifications:
+                        <li>Driving license (B)</li>
+                        <li>Legal counsel license</li>
+                        <li>International Legal English Certificate</li>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
