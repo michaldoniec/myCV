@@ -4,23 +4,32 @@ import com.michal.myCV.model.Person;
 import com.michal.myCV.model.Education;
 import com.michal.myCV.model.Experience;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by michal on 16.05.17.
- */
 public class PersonDaoPostgresql implements PersonDao {
-	private JDBCPostgres database = new JDBCPostgres();
-	private EducationDao educationDao = new EducationDaoPostgresql();
-	private ExperienceDao experienceDao = new ExperienceDaoPostgresql();
+	private JDBCPostgres database;
+	private Connection databaseConnection;
+	private EducationDao educationDao;
+	private ExperienceDao experienceDao;
+	private PreparedStatement statement;
+
+	public PersonDaoPostgresql(JDBCPostgres database){
+		this.database = database;
+		this.databaseConnection = this.database.getConnection();
+		this.educationDao = new EducationDaoPostgresql(this.database);
+		this.experienceDao = new ExperienceDaoPostgresql(this.database);
+	}
 
 	public Person find(int id){
 		Person person = null;
 		try {
 			String selectStatement = String.format("SELECT * FROM personaldata WHERE id = %d", id);
-			ResultSet result = database.executeSelectQuery(selectStatement);
+			statement = databaseConnection.prepareStatement(selectStatement);
+			ResultSet result = database.executeSelectQuery(statement);
 			while(result.next()){
 				Integer userId = result.getInt("id");
 				List<Education> education = educationDao.getAllForPerson(userId);

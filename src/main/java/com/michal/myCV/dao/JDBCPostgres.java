@@ -24,6 +24,10 @@ public class JDBCPostgres {
 		}
 	}
 
+	public Connection getConnection() {
+		return this.connection;
+	}
+
 	public void closeDatabase() {
 		try {
 			clearStatementAndResultSet();
@@ -33,19 +37,19 @@ public class JDBCPostgres {
 		}
 	}
 
-	void executeUpdateQuery(String query) {
+	void executeUpdateQuery(PreparedStatement query) {
 		try {
-			this.statement.executeUpdate(query);
-			this.statement.close();
+			query.executeUpdate();
 			this.connection.commit();
+			query.close();
 		} catch ( SQLException e) {
 			System.err.println( e.getMessage() );
 		}
 	}
 
-	ResultSet executeSelectQuery(String query) {
+	ResultSet executeSelectQuery(PreparedStatement query) {
 		try {
-			this.resultSet = this.statement.executeQuery(query);
+			this.resultSet = query.executeQuery();
 		} catch ( SQLException e) {
 			System.err.println( e.getMessage() );
 		}
