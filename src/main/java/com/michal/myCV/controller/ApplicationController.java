@@ -22,7 +22,7 @@ public class ApplicationController {
 	public  ApplicationController(JDBCPostgres database){
 		exception(Exception.class, (e, req, res) -> e.printStackTrace());
 		staticFileLocation("/public");
-		port(8888);
+
 		this.database = database;
 		personController = new PersonController(database);
 		experienceController = new ExperienceController(database);
