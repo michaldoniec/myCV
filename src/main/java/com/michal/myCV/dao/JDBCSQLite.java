@@ -1,22 +1,20 @@
 package com.michal.myCV.dao;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.sql.*;
 
 
-public class JDBCPostgres {
+public class JDBCSQLite {
 
 	private Connection connection = null;
 	private Statement statement = null;
 	private ResultSet resultSet = null;
 
-	public JDBCPostgres() {
+	public JDBCSQLite() {
 
 		try {
-			Class.forName("org.postgresql.Driver");
-			this.connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/michal", "postgres",
-			 "MD24");
+			Class.forName("org.sqlite.JDBC");
+			this.connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/database/cv");
 			this.statement = connection.createStatement();
 			this.connection.setAutoCommit(false);
 		} catch ( SQLException  | ClassNotFoundException e) {
