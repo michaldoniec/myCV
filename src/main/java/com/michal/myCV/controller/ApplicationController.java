@@ -2,12 +2,11 @@ package com.michal.myCV.controller;
 
 import static spark.Spark.*;
 
-import com.michal.myCV.dao.JDBCPostgres;
+import com.michal.myCV.dao.JDBCSQLite;
 import spark.Request;
 import spark.Response;
 
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
-import spark.ModelAndView;
 
 public class ApplicationController {
 	private ThymeleafTemplateEngine templateEngine = new ThymeleafTemplateEngine();
@@ -15,11 +14,11 @@ public class ApplicationController {
 	private ExperienceController experienceController;
 	private EducationController educationController;
 	private SkillsAndInterestsController skillsAndInterestsController;
-	private JDBCPostgres database;
+	private JDBCSQLite database;
 	private Request req;
 	private Response res;
 
-	public  ApplicationController(JDBCPostgres database){
+	public  ApplicationController(JDBCSQLite database){
 		exception(Exception.class, (e, req, res) -> e.printStackTrace());
 		staticFileLocation("/public");
 		port(8888);
