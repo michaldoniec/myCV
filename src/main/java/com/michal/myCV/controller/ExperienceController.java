@@ -23,7 +23,7 @@ public class ExperienceController {
 
 	public ExperienceController(JDBCSQLite database){
 		this.experienceDao = new ExperienceDaoSQLite(database);
-		this.personDao = new PersonDaoPostgresql(database);
+		this.personDao = new PersonDaoSQLite(database);
 	}
 
 	public ModelAndView renderExperience(Request req, Response res){

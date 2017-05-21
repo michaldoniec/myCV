@@ -21,7 +21,7 @@ public class EducationController {
 
 	public EducationController(JDBCSQLite database){
 		this.educationDao = new EducationDaoSQLite(database);
-		this.personDao = new PersonDaoPostgresql(database);
+		this.personDao = new PersonDaoSQLite(database);
 
 	}
 

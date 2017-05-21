@@ -10,18 +10,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class PersonDaoPostgresql implements PersonDao {
-	private JDBCPostgres database;
+public class PersonDaoSQLite implements PersonDao {
+	private JDBCSQLite database;
 	private Connection databaseConnection;
 	private EducationDao educationDao;
 	private ExperienceDao experienceDao;
 	private PreparedStatement statement;
 
-	public PersonDaoPostgresql(JDBCPostgres database){
+	public PersonDaoSQLite(JDBCSQLite database){
 		this.database = database;
 		this.databaseConnection = this.database.getConnection();
-		this.educationDao = new EducationDaoPostgresql(this.database);
-		this.experienceDao = new ExperienceDaoPostgresql(this.database);
+		this.educationDao = new EducationDaoSQLite(this.database);
+		this.experienceDao = new ExperienceDaoSQLite(this.database);
 	}
 
 	public Person find(int id){

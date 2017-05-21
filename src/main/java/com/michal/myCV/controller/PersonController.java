@@ -3,7 +3,7 @@ package com.michal.myCV.controller;
 
 import com.michal.myCV.dao.JDBCSQLite;
 import com.michal.myCV.dao.PersonDao;
-import com.michal.myCV.dao.PersonDaoPostgresql;
+import com.michal.myCV.dao.PersonDaoSQLite;
 import com.michal.myCV.model.Person;
 
 import spark.ModelAndView;
@@ -15,7 +15,7 @@ public class PersonController {
 	private PersonDao personDao;
 
 	public PersonController(JDBCSQLite database){
-		this.personDao = new PersonDaoPostgresql(database);
+		this.personDao = new PersonDaoSQLite(database);
 	}
 
 	public ModelAndView renderUser(){
