@@ -6,7 +6,7 @@ public class Main {
 		try{
 			Application.run();
 		} catch(RuntimeException e){
-			System.out.println("Application stop");
+			System.out.println(e);
 			Application.getApplicationInstance().stop();
 		}
 	}
