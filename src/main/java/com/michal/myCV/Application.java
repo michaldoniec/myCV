@@ -1,14 +1,14 @@
 package com.michal.myCV;
 
 import com.michal.myCV.controller.ApplicationController;
-import com.michal.myCV.dao.JDBCPostgres;
+import com.michal.myCV.dao.JDBCSQLite;
 
 public class Application {
-	private JDBCPostgres database;
+	private JDBCSQLite database;
 	private static  Application applicationInstance;
 
 	private  Application(){
-		database = new JDBCPostgres();
+		database = new JDBCSQLite();
 	}
 
 	public static Application getApplicationInstance(){
@@ -25,7 +25,7 @@ public class Application {
 		database.closeDatabase();
 	}
 
-	public JDBCPostgres getDatabase() {
+	public JDBCSQLite getDatabase() {
 		return database;
 	}
 }
