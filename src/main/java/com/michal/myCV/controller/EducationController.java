@@ -19,8 +19,8 @@ public class EducationController {
 	private PersonDao personDao;
 	private Person person;
 
-	public EducationController(JDBCPostgres database){
-		this.educationDao = new EducationDaoPostgresql(database);
+	public EducationController(JDBCSQLite database){
+		this.educationDao = new EducationDaoSQLite(database);
 		this.personDao = new PersonDaoPostgresql(database);
 
 	}

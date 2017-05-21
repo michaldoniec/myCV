@@ -1,6 +1,6 @@
 package com.michal.myCV.controller;
 
-import com.michal.myCV.dao.JDBCPostgres;
+import com.michal.myCV.dao.JDBCSQLite;
 import com.michal.myCV.dao.PersonDao;
 import com.michal.myCV.dao.PersonDaoPostgresql;
 import com.michal.myCV.model.Person;
@@ -17,7 +17,7 @@ public class SkillsAndInterestsController {
 	private PersonDao personDao;
 	private Person person;
 
-	public SkillsAndInterestsController(JDBCPostgres database){
+	public SkillsAndInterestsController(JDBCSQLite database){
 		this.personDao = new PersonDaoPostgresql(database);
 	}
 

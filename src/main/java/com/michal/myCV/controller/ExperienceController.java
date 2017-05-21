@@ -21,8 +21,8 @@ public class ExperienceController {
 	private PersonDao personDao;
 	private Person person;
 
-	public ExperienceController(JDBCPostgres database){
-		this.experienceDao = new ExperienceDaoPostgresql(database);
+	public ExperienceController(JDBCSQLite database){
+		this.experienceDao = new ExperienceDaoSQLite(database);
 		this.personDao = new PersonDaoPostgresql(database);
 	}
 
