@@ -11,12 +11,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExperienceDaoPostgresql implements ExperienceDao {
-	private JDBCPostgres database;
+public class ExperienceDaoSQLite implements ExperienceDao {
+	private JDBCSQLite database;
 	private Connection databaseConnection;
 	private PreparedStatement statement;
 
-	public ExperienceDaoPostgresql(JDBCPostgres database){
+	public ExperienceDaoSQLite(JDBCSQLite database){
 		this.database = database;
 		this.databaseConnection = this.database.getConnection();
 	}
@@ -26,7 +26,7 @@ public class ExperienceDaoPostgresql implements ExperienceDao {
 			String addStatement = String.format("INSERT INTO experience " +
 			 "(id, name, description, date_from, date_to, user_id) VALUES(%d,'%s','%s','%s','%s',%d)",
 			 experience.getId(), experience.getName(), experience.getDescription(),
-			 experience.getDateFrom(), experience.getDateTo(), experience.getIdUser());
+			 experience.getDateFrom().toString(), experience.getDateTo().toString(), experience.getIdUser());
 			statement = databaseConnection.prepareStatement(addStatement);
 			database.executeUpdateQuery(statement);
 		} catch(SQLException | NullPointerException e){
@@ -38,8 +38,8 @@ public class ExperienceDaoPostgresql implements ExperienceDao {
 		try{
 			String updateStatement = String.format("UPDATE experience " +
 			  " SET name = '%s', description = '%s', date_from = '%s', date_to = '%s', user_id = %d WHERE id = %d",
-			 experience.getName(), experience.getDescription(), experience.getDateFrom(), experience.getDateTo(),
-			 experience.getIdUser(), experience.getId());
+			 experience.getName(), experience.getDescription(), experience.getDateFrom().toString(),
+			 experience.getDateTo().toString(), experience.getIdUser(), experience.getId());
 			statement = databaseConnection.prepareStatement(updateStatement);
 			database.executeUpdateQuery(statement);
 		} catch(SQLException | NullPointerException e){
