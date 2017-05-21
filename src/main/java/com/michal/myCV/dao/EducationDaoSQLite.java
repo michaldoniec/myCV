@@ -11,12 +11,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EducationDaoPostgresql implements EducationDao {
-	private JDBCPostgres database;
+public class EducationDaoSQLite implements EducationDao {
+	private JDBCSQLite database;
 	private Connection databaseConnection;
 	private PreparedStatement statement;
 
-	public EducationDaoPostgresql(JDBCPostgres database){
+	public EducationDaoSQLite(JDBCSQLite database){
 		this.database = database;
 		this.databaseConnection = this.database.getConnection();
 	}
@@ -25,7 +25,7 @@ public class EducationDaoPostgresql implements EducationDao {
 		try{
 			String addStatement = String.format("INSERT INTO education(id, name, description, date_from, date_to, id_user) " +
 			 "VALUES(%d,'%s','%s','%s','%s',%d)", education.getId(), education.getName(), education.getDescription(),
-			 education.getDateFrom(), education.getDateTo(),education.getIdUser());
+			 education.getDateFrom().toString(), education.getDateTo().toString(),education.getIdUser());
 			statement = databaseConnection.prepareStatement(addStatement);
 			database.executeUpdateQuery(statement);
 		} catch(NullPointerException | SQLException e){
@@ -37,8 +37,8 @@ public class EducationDaoPostgresql implements EducationDao {
 		try {
 			String updateStatement = String.format("UPDATE education " +
 			  " SET name = '%s', description = '%s', date_from = '%s', date_to = '%s', id_user = %d WHERE id = %d",
-			 education.getName(), education.getDescription(), education.getDateFrom(), education.getDateTo(),
-			 education.getIdUser(), education.getId());
+			 education.getName(), education.getDescription(), education.getDateFrom().toString(),
+			 education.getDateTo().toString(), education.getIdUser(), education.getId());
 			statement = databaseConnection.prepareStatement(updateStatement);
 			database.executeUpdateQuery(statement);
 		} catch (SQLException | NullPointerException e) {
