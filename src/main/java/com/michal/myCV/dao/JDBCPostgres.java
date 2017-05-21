@@ -1,7 +1,7 @@
 package com.michal.myCV.dao;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.*;
 
 
@@ -15,11 +15,15 @@ public class JDBCPostgres {
 
 		try {
 			Class.forName("org.postgresql.Driver");
-			this.connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/michal", "postgres",
-			 "MD24");
+			URI databaseUri = new URI(System.getenv("JDBC_DATABASE_URL"));
+			String username = databaseUri.getUserInfo().split(":")[0];
+			String password = databaseUri.getUserInfo().split(":")[1];
+			String databaseUrl = "jdbc:postgresql://" + databaseUri.getHost() + ':' + databaseUri.getPort() + databaseUri.getPath();
+
+			this.connection = DriverManager.getConnection(databaseUrl,username,password);
 			this.statement = connection.createStatement();
 			this.connection.setAutoCommit(false);
-		} catch ( SQLException  | ClassNotFoundException e) {
+		} catch ( SQLException  | ClassNotFoundException | URISyntaxException e) {
 			System.err.println(e.getMessage());
 		}
 	}
