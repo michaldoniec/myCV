@@ -1,12 +1,13 @@
 package com.michal.myCV;
 
 import static spark.Spark.port;
+import static spark.Spark.*;
 
 public class Main {
 
 	public static void main(String[] args) {
 		port(getHerokuAssignedPort());
-		Application.run();
+       Application.run();
 	}
 
 	static int getHerokuAssignedPort() {
