@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		port(getHerokuAssignedPort());
 		Application.run();
-			}
+	}
 
 	static int getHerokuAssignedPort() {
 		ProcessBuilder processBuilder = new ProcessBuilder();
