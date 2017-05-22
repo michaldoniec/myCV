@@ -18,7 +18,7 @@ public class JDBCPostgres {
 			this.connection = generateConnection();
 			this.statement = connection.createStatement();
 			this.connection.setAutoCommit(false);
-		} catch ( SQLException  | ClassNotFoundException | URISyntaxException e) {
+		} catch ( SQLException  | ClassNotFoundException e) {
 			System.err.println(e.getMessage());
 		}
 	}
@@ -65,11 +65,11 @@ public class JDBCPostgres {
 		}
 	}
 
-	private static Connection generateConnection() throws  URISyntaxException, SQLException {
-		URI dbUri = new URI(System.getenv("DATABASE_URL"));
-		String username = dbUri.getUserInfo().split(":")[0];
-		String password = dbUri.getUserInfo().split(":")[1];
-		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+	private static Connection generateConnection() throws SQLException {
+
+		String username = "uyavzffasatvqz";
+		String password = "6f7124941b02f877b063682de2bf9dfd694628b196cea23620e7b6f613ff5470";
+		String dbUrl = "jdbc:postgresql://ec2-54-197-232-155.compute-1.amazonaws.com:5432/d8e9dbe742mlk0";
 		return DriverManager.getConnection(dbUrl, username, password);
 	}
 }
