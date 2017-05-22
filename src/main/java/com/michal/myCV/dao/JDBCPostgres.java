@@ -15,12 +15,7 @@ public class JDBCPostgres {
 
 		try {
 			Class.forName("org.postgresql.Driver");
-			URI databaseUri = new URI(System.getenv("JDBC_DATABASE_URL"));
-			String username = databaseUri.getUserInfo().split(":")[0];
-			String password = databaseUri.getUserInfo().split(":")[1];
-			String databaseUrl = "jdbc:postgresql://" + databaseUri.getHost() + ':' + databaseUri.getPort() + databaseUri.getPath();
-
-			this.connection = DriverManager.getConnection(databaseUrl,username,password);
+			this.connection = generateConnection();
 			this.statement = connection.createStatement();
 			this.connection.setAutoCommit(false);
 		} catch ( SQLException  | ClassNotFoundException | URISyntaxException e) {
@@ -68,5 +63,13 @@ public class JDBCPostgres {
 		if (this.resultSet != null) {
 			this.resultSet.close();
 		}
+	}
+
+	private static Connection generateConnection() throws  URISyntaxException, SQLException {
+		URI dbUri = new URI(System.getenv("DATABASE_URL"));
+		String username = dbUri.getUserInfo().split(":")[0];
+		String password = dbUri.getUserInfo().split(":")[1];
+		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+		return DriverManager.getConnection(dbUrl, username, password);
 	}
 }
