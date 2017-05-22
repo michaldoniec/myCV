@@ -65,7 +65,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>com.michal.myCV.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -79,7 +79,7 @@
                     <appName>evening-crag-10404</appName>
                     <processTypes>
                         <!-- Tell Heroku how to launch your application -->
-                        <web>java -jar target/myCV-1.0-jar-with-dependencies.jar</web>
+                        <web>java -jar target/myCV-1.0-jar-with-dependencies.jar com.michal.myCV.Main</web>
                     </processTypes>
                 </configuration>
             </plugin>
