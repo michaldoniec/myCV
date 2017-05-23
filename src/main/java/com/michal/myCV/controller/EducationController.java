@@ -110,7 +110,8 @@ public class EducationController {
 			return renderEducation(req, res);
 		} catch(NullPointerException | DateTimeParseException e){
 			System.err.println(e.getMessage());
-			return renderEducation(req,res);
+			res.redirect("/education/add");
+			return renderAddEducation(req,res);
 		}
 	}
 	private Map getEducationParams(){
@@ -129,8 +130,12 @@ public class EducationController {
 		LocalDate dateFrom = LocalDate.parse(req.queryParams("new_date_from"), dateFormat);
 		LocalDate dateTo = LocalDate.parse(req.queryParams("new_date_to"), dateFormat);
 		Integer idUser = new Integer(req.queryParams("new_user_id"));
-		education = new Education(name, description, dateFrom, dateTo, idUser);
-		return education;
+		if(name.equals("") || description.equals("") || dateFrom.equals("") || dateTo.equals("") ||
+		 idUser.equals("")){
+			return education;
+		} else {
+			return new Education(name, description, dateFrom, dateTo, idUser);
+		}
 	}
 
 
