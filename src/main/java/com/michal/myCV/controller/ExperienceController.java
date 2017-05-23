@@ -61,7 +61,8 @@ public class ExperienceController {
 			return renderExperience(req, res);
 		} catch(NullPointerException | DateTimeParseException  e){
 			System.err.println(e.getMessage());
-			return renderExperience(req,res);
+			res.redirect("/experience/add");
+			return renderAddExperience(req,res);
 		}
 	}
 
@@ -131,8 +132,11 @@ public class ExperienceController {
 		LocalDate dateFrom = LocalDate.parse(req.queryParams("new_date_from"), dateFormat);
 		LocalDate dateTo = LocalDate.parse(req.queryParams("new_date_to"), dateFormat);
 		Integer idUser = new Integer(req.queryParams("new_user_id"));
-		experience = new Experience(name, description, dateFrom, dateTo, idUser);
-		return experience;
+		if(name.equals("") || description.equals("") || dateFrom.equals("") || dateTo.equals("") ||
+		 idUser.equals("")){
+			return experience;
+		} else {
+			return new Experience(name, description, dateFrom, dateTo, idUser);
+		}
 	}
-
 }
