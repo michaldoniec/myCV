@@ -25,110 +25,110 @@
 
 </head>
 <body>
-<div class="container">
-    <div class ="col-sm-3">
-        <div class="row">
-            <div class="col-xm-4">
-                <div class="classWithPad">
-                    <p id="fullname" th:text="${user.getName()} + ' ' + ${user.getSurname()}"></p>
-                    <div class="aligner">
-                        <img id="avatar" src="http://i.imgur.com/bTYUjJo.jpg">
-                    </div>
-                    <p></p>
-                    <div id="personal-data">
-                    <p th:text="'City: '+ ${user.getAddress()}">City: </p>
-                    <p th:text="'Age: '+ ${user.getAge()}">Age: </p>
-                    <p th:text="'Phone No. ' + ${user.getPhone()}">Phone No. </p>
-                    <p th:text="'Email: ' + ${user.getEmail()}">Email: </p>
-                    <p><a href="https://github.com/michaldoniec">My Github profile</a></p>
-                    <p><a href="https://www.linkedin.com/in/micha%C5%82-doniec-22651370/">My linkedin profile</a></p>
-                    <p><a href="https://github.com/michaldoniec/myCV">Github repository of this project</a></p>
+    <div class="container">
+        <div class ="col-sm-3">
+            <div class="row">
+                <div class="col-xm-4">
+                    <div class="classWithPad">
+                        <p id="fullname" th:text="${user.getName()} + ' ' + ${user.getSurname()}"></p>
+                        <div class="aligner">
+                            <img id="avatar" src="http://i.imgur.com/bTYUjJo.jpg">
+                        </div>
+                        <p></p>
+                        <div id="personal-data">
+                        <p th:text="'City: '+ ${user.getAddress()}">City: </p>
+                        <p th:text="'Age: '+ ${user.getAge()}">Age: </p>
+                        <p th:text="'Phone No. ' + ${user.getPhone()}">Phone No. </p>
+                        <p th:text="'Email: ' + ${user.getEmail()}">Email: </p>
+                        <p><a href="https://github.com/michaldoniec">My Github profile</a></p>
+                        <p><a href="https://www.linkedin.com/in/micha%C5%82-doniec-22651370/">My linkedin profile</a></p>
+                        <p><a href="https://github.com/michaldoniec/myCV">Github repository of this project</a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xm-8">
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Experience<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/experience/view">View past experience</a></li>
-                            <li><a href="/experience/add">Add new experience</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Education<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/education/view">View past education</a></li>
-                            <li><a href="/education/add">Add new school/course</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Skills, Technologies, Interests<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/skills" class="menulink">Skills, certificates and technologies</a></li>
-                            <li><a href="/interests" class="menulink">Interests</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class ="col-sm-9">
-        <div class="row">
-            <div class="col-xm-12">
-                <h3>
-                    <span>Hello world</span>
-                </h3>
-                <p>
-                    I am glad that you came on myGoldenLinkedProfessionalSpace where I can demonstrate what
-                   I have learned so far.
-                </p>
-                <p>
-                    Currently I am a student of <a href="https://codecool.pl/">Codecool school</a> which provides
-                extensive and holistic programming course focused mostly on Python, JAVA and web technologies.
-                </p>
-                <p> What I have learned so far?
-                    <ul>
-                        <li>Python</li>
-                        <li>Flask</li>
-                        <li>Jinja</li>
-                        <li>Introduction into OOP</li>
-                        <li>JAVA</li>
-                        <li>Spark</li>
-                        <li>Thymeleaf</li>
-                        <li>Javascript (plus jquery)</li>
-                        <li>SQL (SQLite, Postgresql)</li>
-                        <li>Ajax</li>
-                        <li>HTML</li>
-                        <li>CSS (plus bootstrap)</li>
-                        <li>Design patterns such as:
-                            <ul>
-                                <li>MVC</li>
-                                <li>DAO</li>
-                                <li>Singleton</li>
-                                <li>Iterator</li>
-                             </ul>
+                <div class="col-xm-8">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Experience<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/experience/view">View past experience</a></li>
+                                <li><a href="/experience/add">Add new experience</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Education<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/education/view">View past education</a></li>
+                                <li><a href="/education/add">Add new school/course</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Skills, Technologies, Interests<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/skills" class="menulink">Skills, certificates and technologies</a></li>
+                                <li><a href="/interests" class="menulink">Interests</a></li>
+                            </ul>
                         </li>
                     </ul>
-                </p>
-                <p>
-                    Why do I apply for internship at Solinteractive? Mostly to learn new backend technology -
-                    Scala and mobile technology - Android. Also I heard from my friend (currently working for you) that
-                    you create a great atmosphere at the workplace.
-                </p>
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-9">
+            <div class="row">
+                <div class="col-xm-12">
+                    <h3>
+                        <span>Hello world</span>
+                    </h3>
+                    <p>
+                        I am glad that you came on myGoldenLinkedProfessionalSpace where I can demonstrate what
+                       I have learned so far.
+                    </p>
+                    <p>
+                        Currently I am a student of <a href="https://codecool.pl/">Codecool school</a> which provides
+                    extensive and holistic programming course focused mostly on Python, JAVA and web technologies.
+                    </p>
+                    <p> What I have learned so far?
+                        <ul>
+                            <li>Python</li>
+                            <li>Flask</li>
+                            <li>Jinja</li>
+                            <li>Introduction into OOP</li>
+                            <li>JAVA</li>
+                            <li>Spark</li>
+                            <li>Thymeleaf</li>
+                            <li>Javascript (plus jquery)</li>
+                            <li>SQL (SQLite, Postgresql)</li>
+                            <li>Ajax</li>
+                            <li>HTML</li>
+                            <li>CSS (plus bootstrap)</li>
+                            <li>Design patterns such as:
+                                <ul>
+                                    <li>MVC</li>
+                                    <li>DAO</li>
+                                    <li>Singleton</li>
+                                    <li>Iterator</li>
+                                 </ul>
+                            </li>
+                        </ul>
+                    </p>
+                    <p>
+                        Why do I apply for internship at Solinteractive? Mostly to learn new backend technology -
+                        Scala and mobile technology - Android. Also I heard from my friend (currently working for you) that
+                        you create a great atmosphere at the workplace.
+                    </p>
 
-                <p>
-                    Please poke around, have fun with this small CRUD app - add/edit/delete data. Please note that this
-                    app was designed to serve as tech demo of my skills in backend technologies (mostly JAVA) not
-                    front-end. So I know it could be prettier.
-                </p>
-                <p>
-                    Thank you for your time.
-                </p>
+                    <p>
+                        Please poke around, have fun with this small CRUD app - add/edit/delete data. Please note that this
+                        app was designed to serve as tech demo of my skills in backend technologies (mostly JAVA) not
+                        front-end. So I know it could be prettier.
+                    </p>
+                    <p>
+                        Thank you for your time.
+                    </p>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

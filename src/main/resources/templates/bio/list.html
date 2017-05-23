@@ -25,119 +25,119 @@
 
 </head>
 <body>
-<div class="container">
-    <div class ="col-sm-3">
-        <div class="row">
-            <div class="col-xm-4">
-                <div class="classWithPad">
-                    <p id="fullname" th:text="${user.getName()} + ' ' + ${user.getSurname()}"></p>
-                    <div class="aligner">
-                        <img id="avatar" src="http://i.imgur.com/bTYUjJo.jpg">
-                    </div>
-                    <p></p>
-                    <div id="personal-data">
-                        <p th:text="'City: '+ ${user.getAddress()}">City: </p>
-                        <p th:text="'Age: '+ ${user.getAge()}">Age: </p>
-                        <p th:text="'Phone No. ' + ${user.getPhone()}">Phone No. </p>
-                        <p th:text="'Email: ' + ${user.getEmail()}">Email: </p>
+    <div class="container">
+        <div class ="col-sm-3">
+            <div class="row">
+                <div class="col-xm-4">
+                    <div class="classWithPad">
+                        <p id="fullname" th:text="${user.getName()} + ' ' + ${user.getSurname()}"></p>
+                        <div class="aligner">
+                            <img id="avatar" src="http://i.imgur.com/bTYUjJo.jpg">
+                        </div>
+                        <p></p>
+                        <div id="personal-data">
+                            <p th:text="'City: '+ ${user.getAddress()}">City: </p>
+                            <p th:text="'Age: '+ ${user.getAge()}">Age: </p>
+                            <p th:text="'Phone No. ' + ${user.getPhone()}">Phone No. </p>
+                            <p th:text="'Email: ' + ${user.getEmail()}">Email: </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xm-8">
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Experience<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/experience/view">View past experience</a></li>
-                            <li><a href="/experience/add">Add new experience</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Education<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/education/view">View past education</a></li>
-                            <li><a href="/education/add">Add new school/course</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Skills, Technologies, Interests<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/skills" class="menulink">Skills, certificates and technologies</a></li>
-                            <li><a href="/interests" class="menulink">Interests</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/"><button class="btn btn-primary btn-md">Main page</button></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class ="col-sm-9">
-        <div class="row">
-            <div class="col-md-12 page-header">
-                <h1><span th:text="${fieldName}">Title</span>
-                </h1>
+                <div class="col-xm-8">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Experience<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/experience/view">View past experience</a></li>
+                                <li><a href="/experience/add">Add new experience</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Education<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/education/view">View past education</a></li>
+                                <li><a href="/education/add">Add new school/course</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Skills, Technologies, Interests<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/skills" class="menulink">Skills, certificates and technologies</a></li>
+                                <li><a href="/interests" class="menulink">Interests</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/"><button class="btn btn-primary btn-md">Main page</button></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xm-12">
-                <table class="table table-active table-bordered table-hover table-responsive">
-                    <thead>
-                    <tr class="text-center warning">
-                        <th>Name: </th>
-                        <th>From: </th>
-                        <th>To: </th>
-                        <th>Description: </th>
-                        <th>Options: </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="element : ${list}">
-                            <div th:if="${element.getId() != editField}">
-                                <td hidden th:text="${element.getId()}">Id</td>
-                                <td th:text="${element.getName()}">Name</td>
-                                <td th:text="${element.getDateFrom()}">From</td>
-                                <td th:text="${element.getDateTo()}">To</td>
-                                <td th:text="${element.getDescription()}">Description</td>
-                                <td>
-                                    <form method="GET">
-                                        <input hidden name = "edit" th:value="${element.getId}" />
-                                        <input type="submit" class="btn btn-primary btn-md" value="Edit" />
-                                    </form>
-
-                                    <form method="GET">
-                                        <input hidden name = "delete" th:value="${element.getId}" />
-                                        <input type="submit" class="btn btn-primary btn-md" value="Delete" />
-                                    </form>
-                                </td>
-                            </div>
-                            <div th:if="${element.getId() == editField}">
-                                <form method="POST">
-                                    <td hidden th:text="${element.getId()}">Id</td>
-                                    <td>
-                                        <input type="text" name = "edit_name" th:placeholder="${element.getName()}" />
-                                    <td>
-                                        <input type="date" name = "edit_date_from" th:placeholder="${element.getDateFrom()}"/>
-                                    </td>
-                                    <td>
-                                        <input type="date" name = "edit_date_to" th:placeholder="${element.getDateTo()}" />
-                                    </td>
-                                    <td>
-                                        <input type="text" name="edit_description" th:placeholder="${element.getDescription()}" />
-                                    </td>
-                                    <td>
-                                        <input hidden name = "edit" th:value="${element.getId}" />
-                                        <input type="submit" class="btn btn-primary btn-md" value="Confirm" />
-                                    </td>
-                                </form>
-                            </div>
+        <div class ="col-sm-9">
+            <div class="row">
+                <div class="col-md-12 page-header">
+                    <h1><span th:text="${fieldName}">Title</span>
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xm-12">
+                    <table class="table table-active table-bordered table-hover table-responsive">
+                        <thead>
+                        <tr class="text-center warning">
+                            <th>Name: </th>
+                            <th>From: </th>
+                            <th>To: </th>
+                            <th>Description: </th>
+                            <th>Options: </th>
                         </tr>
-                </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <tr th:each="element : ${list}">
+                                <div th:if="${element.getId() != editField}">
+                                    <td hidden th:text="${element.getId()}">Id</td>
+                                    <td th:text="${element.getName()}">Name</td>
+                                    <td th:text="${element.getDateFrom()}">From</td>
+                                    <td th:text="${element.getDateTo()}">To</td>
+                                    <td th:text="${element.getDescription()}">Description</td>
+                                    <td>
+                                        <form method="GET">
+                                            <input hidden name = "edit" th:value="${element.getId}" />
+                                            <input type="submit" class="btn btn-primary btn-md" value="Edit" />
+                                        </form>
+
+                                        <form method="GET">
+                                            <input hidden name = "delete" th:value="${element.getId}" />
+                                            <input type="submit" class="btn btn-primary btn-md" value="Delete" />
+                                        </form>
+                                    </td>
+                                </div>
+                                <div th:if="${element.getId() == editField}">
+                                    <form method="POST">
+                                        <td hidden th:text="${element.getId()}">Id</td>
+                                        <td>
+                                            <input type="text" name = "edit_name" th:placeholder="${element.getName()}" />
+                                        <td>
+                                            <input type="date" name = "edit_date_from" th:placeholder="${element.getDateFrom()}"/>
+                                        </td>
+                                        <td>
+                                            <input type="date" name = "edit_date_to" th:placeholder="${element.getDateTo()}" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name="edit_description" th:placeholder="${element.getDescription()}" />
+                                        </td>
+                                        <td>
+                                            <input hidden name = "edit" th:value="${element.getId}" />
+                                            <input type="submit" class="btn btn-primary btn-md" value="Confirm" />
+                                        </td>
+                                    </form>
+                                </div>
+                            </tr>
+                    </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

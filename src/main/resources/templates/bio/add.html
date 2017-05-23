@@ -25,78 +25,78 @@
 
 </head>
 <body>
-<div class="container">
-    <div class ="col-sm-3">
-        <div class="row">
-            <div class="col-xm-4">
-                <div class="classWithPad">
-                    <p id="fullname" th:text="${user.getName()} + ' ' + ${user.getSurname()}"></p>
-                    <div class="aligner">
-                        <img id="avatar" src="http://i.imgur.com/bTYUjJo.jpg">
-                    </div>
-                    <p></p>
-                    <div id="personal-data">
-                        <p th:text="'City: '+ ${user.getAddress()}">City: </p>
-                        <p th:text="'Age: '+ ${user.getAge()}">Age: </p>
-                        <p th:text="'Phone No. ' + ${user.getPhone()}">Phone No. </p>
-                        <p th:text="'Email: ' + ${user.getEmail()}">Email: </p>
+    <div class="container">
+        <div class ="col-sm-3">
+            <div class="row">
+                <div class="col-xm-4">
+                    <div class="classWithPad">
+                        <p id="fullname" th:text="${user.getName()} + ' ' + ${user.getSurname()}"></p>
+                        <div class="aligner">
+                            <img id="avatar" src="http://i.imgur.com/bTYUjJo.jpg">
+                        </div>
+                        <p></p>
+                        <div id="personal-data">
+                            <p th:text="'City: '+ ${user.getAddress()}">City: </p>
+                            <p th:text="'Age: '+ ${user.getAge()}">Age: </p>
+                            <p th:text="'Phone No. ' + ${user.getPhone()}">Phone No. </p>
+                            <p th:text="'Email: ' + ${user.getEmail()}">Email: </p>
+                        </div>
                     </div>
                 </div>
+                <div class="col-xm-8">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Experience<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/experience/view">View past experience</a></li>
+                                <li><a href="/experience/add">Add new experience</a></li>
+                                <li><a href="/experience/remove">Remove past experience</a></li>
+                                <li><a href="/experience/update">Update past experience</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Education<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/education/view">View past education</a></li>
+                                <li><a href="/education/add">Add new school/course</a></li>
+                                <li><a href="/education/remove">Remove school/course</a></li>
+                                <li><a href="/education/update">Update school/course</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Skills, Technologies, Interests<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/skills" class="menulink">Skills, certificates and technologies</a></li>
+                                <li><a href="interests" class="menulink">Interests</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/"><button class="btn btn-primary btn-md">Main page</button></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-xm-8">
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Experience<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/experience/view">View past experience</a></li>
-                            <li><a href="/experience/add">Add new experience</a></li>
-                            <li><a href="/experience/remove">Remove past experience</a></li>
-                            <li><a href="/experience/update">Update past experience</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Education<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/education/view">View past education</a></li>
-                            <li><a href="/education/add">Add new school/course</a></li>
-                            <li><a href="/education/remove">Remove school/course</a></li>
-                            <li><a href="/education/update">Update school/course</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Skills, Technologies, Interests<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/skills" class="menulink">Skills, certificates and technologies</a></li>
-                            <li><a href="interests" class="menulink">Interests</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/"><button class="btn btn-primary btn-md">Main page</button></a>
-                    </li>
-                </ul>
+        </div>
+        <div class ="col-sm-9">
+            <div class="row">
+                <div class="col-md-12 page-header">
+                    <h1><span th:text="'Add '+ ${fieldName}">Title</span>
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xm-12">
+                    <form method="POST">
+                        <p>Name: <input type="text" name="new_name" required /></p>
+                        <p> Description <input type="text" name="new_description" required /></p>
+                        <p>Date from: <input type="date" name="new_date_from" required /></p>
+                        <p>Date to: <input type="date" name="new_date_to" required /></p>
+                        <input hidden name="new_user_id" th:value="${user.getId()}">
+                        <input type="submit" class="btn btn-primary btn-md" value="Add">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <div class ="col-sm-9">
-        <div class="row">
-            <div class="col-md-12 page-header">
-                <h1><span th:text="'Add '+ ${fieldName}">Title</span>
-                </h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xm-12">
-                <form method="POST">
-                    <p>Name: <input type="text" name="new_name" required /></p>
-                    <p> Description <input type="text" name="new_description" required /></p>
-                    <p>Date from: <input type="date" name="new_date_from" required /></p>
-                    <p>Date to: <input type="date" name="new_date_to" required /></p>
-                    <input hidden name="new_user_id" th:value="${user.getId()}">
-                    <input type="submit" class="btn btn-primary btn-md" value="Add">
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 </body>
 </html>
